@@ -1,0 +1,36 @@
+Moon 30 23
+Strength 30 19
+Sun 30 23
+Star 30 20
+World 30 25
+Tempe 30 24
+Devil 30 21
+Chariot 30 23
+Tower 30 22
+Aries 15 24
+Taurus 15 25
+Gemini 15 24
+Cancer 15 22
+Leo 15 24 24
+Virgo 15 23
+Libra 15 23
+Scorpio 15 23
+Sage 15 21
+Capricorn 15 24
+Aquarius 15 22
+Pisces 15 23
+SDCAries 10 10
+SDCTaurus 10 10
+SDCGemini 10 10
+SDCCancer 10 10
+SDCLeo 10 24 10
+SDCVirgo 10 10
+SDCLibra 10 10
+SDCScorpio 10 10
+SDCSage 10 10
+SDCCapricorn 10 10
+SDCAquarius 10 10
+SDCPisces 10 10
+StickerStr 5 30
+StickerDeath 5 30
+StickerStar 5 30
