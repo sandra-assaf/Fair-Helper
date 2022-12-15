@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     public float speed;
     public float jumpSpeed;
     private bool isJumping = false;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,17 @@ public class CharacterMovement : MonoBehaviour
     {
         float dirX = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(dirX * speed, rb.velocity.y);
+        animator.SetFloat("Speed", Mathf.Abs(dirX * speed));
+        if (dirX > 0.1)
+        {
+            animator.SetFloat("XInput", 1);
+        } else if (dirX < 0)
+        {
+            animator.SetFloat("XInput", -1);
+        }
+        
 
-        if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             this.gameObject.GetComponent<Collider2D>().isTrigger = true;
