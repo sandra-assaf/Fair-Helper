@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+[System.Serializable]
+public class MyStringEvent : UnityEvent<string>
+{
+}
 
 public class MemoryController : MonoBehaviour
 {
+    public static bool isPopped = false;
     public GameObject popupBox;
     public Animator animator;
 
@@ -14,33 +21,43 @@ public class MemoryController : MonoBehaviour
     public Text popUpText;
     public Image popUpImage;
 
-    private bool canPop = true;
     private bool playerInRange = false;
+    public MyStringEvent m_MyEvent;
 
     public void Start()
     {
         popUpText.text = memText;
         popUpImage.sprite = memImage;
+        if (m_MyEvent == null)
+            m_MyEvent = new MyStringEvent();
+
     }
 
     public void popUp()
     {
         popupBox.SetActive(true);
         animator.SetTrigger("pop");
+        MemoryController.isPopped = true;
+        m_MyEvent.Invoke(this.gameObject.tag);
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange && canPop)
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange && !MemoryController.isPopped)
         {
-            canPop = false;
             popUp(); 
         }
     }
 
     public void reactivatePop()
     { 
-        canPop = true;
+        MemoryController.isPopped = false;
+        if(m_MyEvent != null) 
+        { 
+            m_MyEvent?.Invoke("Close"); 
+        }
+        popupBox.SetActive(false);
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
